@@ -4,7 +4,7 @@ import threading
 import socket
 import os
 from flask import Flask, jsonify
-from deployer import deploy_judging_form
+from agents.deployer import deploy_judging_form
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
@@ -124,7 +124,7 @@ def declare_winners_api():
 
 # --- Main App Run --- #
 
-if __name__ == '__main__':
+def run_app():
     setup_environment_logic()          # ✅ Step 1: Setup
     deploy_judging_form_directly()      # ✅ Step 2: Deploy Form (no auto-open)
     app.run(host='0.0.0.0', port=8000)  # ✅ Step 3: Start backend server
